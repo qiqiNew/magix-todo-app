@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no">
+     <title>Document</title>
+     <link rel="stylesheet" href="./src/app/asset/bootstrap.min.css">
+     <script src="./src/vendor/require.js"></script>
+ </head>
+ <body>
+
+
+ <script>
+ var pathBase = './src/'
+ require.config({
+     paths: {
+         jquery: pathBase + 'vendor/jquery',
+         magix: pathBase + 'vendor/magix'
+     }
+ })
+
+ // magix为了同时支持jquery和zepto, 在依赖的时候，使用了中性名称$，代表jquery或者zepto，具体是使用jquery还是zepto
+ // 需要在这里对使用的框架进行配置才能被正确解析
+ define('$',['jquery'],function($){
+     return $
+ })
+
+ require(['jquery', 'magix'], function ($, Magix) {
+     console.log('jquery', $)
+     console.log('magix' , Magix)
+ })
+ </script>
+
+ </body>
+ </html>

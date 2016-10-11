@@ -1,0 +1,23 @@
+{
+  "name": "magix-todo-app",
+  "version": "1.0.0",
+  "description": "magix教程项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thx/magix-todo-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thx/magix-todo-app/issues"
+  },
+  "homepage": "https://github.com/thx/magix-todo-app#readme",
+  "devDependencies": {
+    "gulp-watch": "^4.3.10",
+    "gulp-webserver": "^0.9.1"
+  }
+}
