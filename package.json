@@ -1,7 +1,7 @@
 {
   "name": "magix-todo-app",
   "version": "1.0.0",
-  "description": "magix教程项目",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,14 +20,11 @@
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.2",
-    "gulp-load-plugins": "^1.2.4",
+    "gulp-load-plugins": "^1.3.0",
     "gulp-uglify": "^2.0.0",
-    "gulp-watch": "^4.3.9",
-    "gulp-webserver": "~0.9.1",
-    "jquery": "^3.1.0",
-    "magix": "^3.1.2",
-    "magix-combine": "^1.1.12",
-    "requirejs": "^2.2.0",
+    "gulp-watch": "^4.3.10",
+    "gulp-webserver": "^0.9.1",
+    "magix-combine": "^1.1.14",
     "run-sequence": "^1.2.2"
   }
 }
