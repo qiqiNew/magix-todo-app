@@ -9,27 +9,48 @@
  </head>
  <body>
 
+    <div id="magix_root"></div>
 
- <script>
- var pathBase = './src/'
- require.config({
-     paths: {
-         jquery: pathBase + 'vendor/jquery',
-         magix: pathBase + 'vendor/magix'
-     }
- })
+<script>
+var pathBase = './src/'
 
- // magix为了同时支持jquery和zepto, 在依赖的时候，使用了中性名称$，代表jquery或者zepto，具体是使用jquery还是zepto
- // 需要在这里对使用的框架进行配置才能被正确解析
- define('$',['jquery'],function($){
-     return $
- })
+require.config({
+ paths: {
+    app: pathBase + 'app',
+    jquery: pathBase + 'vendor/jquery',
+    magix: pathBase + 'vendor/magix'
+ }
+})
 
- require(['jquery', 'magix'], function ($, Magix) {
-     console.log('jquery', $)
-     console.log('magix' , Magix)
- })
- </script>
+/**
+ * Magix为了同时支持jquery和zepto, 使用通用的$表示这两个框架
+ * 在这里设置$为我们需要的框架
+ **/
+define('$',['jquery'],function($){
+ return $
+})
 
- </body>
- </html>
+require(['jquery', 'magix'], function ($, Magix) {
+    Magix.boot({
+        defaultView: 'app/view/default',       // Magix启动渲染的默认视图
+        defaultPath: '/todo/list',              // hash没有指定path时的默认路由
+
+        rootId: 'magix_root',   // magix模块渲染DOM的容器ID, 默认为body元素
+
+        /**
+         * 程序中一些出错会影响整个应用的运行和稳定，
+         * 这种情况在单页应用中最为致命，所以Magix对执行流程上的方法使用try catch调用，
+         * 避免某个方法出错后导致后续代码不能继续运行。
+         * 当出错时，Magix会调用配置中的error方法，您可以在这里抛出错误(开发阶段)或收集错误并上报(部署上线阶段)
+         **/
+        error: function(e) {
+            // 这里我们先简单的抛出错误，部署上线的时候建议使用如
+            // new Image().src='//xx.yy/jserror?desc='+e.description收集错误哦～
+            throw e
+        }
+    })
+})
+</script>
+
+</body>
+</html>
