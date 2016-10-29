@@ -1,6 +1,7 @@
 
 var Magix = require('magix')
 var $ = require('jquery')
+var Service = require('app/service/service')
 
 module.exports = Magix.View.extend({
     tmpl: '@list.html',
@@ -15,17 +16,24 @@ module.exports = Magix.View.extend({
             keyword: router.params.keyword
         }
 
-        $.ajax({
-            url: '/api/todo/list.json',
-            data: {
+        new Service().all([{
+            name: 'todo-list',
+            urlParams: {
                 keyword: this.data.keyword
             }
-        }).done(function (todosResp) {
-            that.data.todos = todosResp.data.todos.filter(function (todo) {
-                return todo.name.search(that.data.keyword) != -1
-            })
+        }], function(err, listModel) {
 
+            if (err) {
+                this.data.err = err
+            } else {
+                var respObj = listModel.get('data', {})
+                var todoList = respObj.data.todos
+                that.data.todos = todoList.filter(function (todo) {
+                    return todo.name.search(that.data.keyword) != -1
+                })
+            }
             that.setVueHTML(that.data)
+
         })
     },
     'search<submit>': function (e) {
