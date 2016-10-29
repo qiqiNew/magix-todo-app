@@ -19,7 +19,8 @@ require.config({
     app: pathBase + 'app',
     jquery: pathBase + 'vendor/jquery',
     magix: pathBase + 'vendor/magix',
-    _: pathBase + 'vendor/underscore'
+    underscore: pathBase + 'vendor/underscore',
+    vue: pathBase + 'vendor/vue'
  }
 })
 
@@ -38,6 +39,9 @@ require(['jquery', 'magix'], function ($, Magix) {
 
         rootId: 'magix_root',   // magix模块渲染DOM的容器ID, 默认为body元素
 
+
+        // Magix启动前加载这里的资源
+        exts: ['app/magix-view-extension'],
         /**
          * 程序中一些出错会影响整个应用的运行和稳定，
          * 这种情况在单页应用中最为致命，所以Magix对执行流程上的方法使用try catch调用，

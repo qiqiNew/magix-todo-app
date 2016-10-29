@@ -4,7 +4,10 @@ var $ = require('jquery')
 module.exports = Magix.View.extend({
     tmpl: '@add.html',
     render: function() {
-        this.setHTML(this.id, this.tmpl)
+        var todo = {
+            name: 'magix'
+        }
+        this.setViewHTML(todo)
     },
 
     /**
