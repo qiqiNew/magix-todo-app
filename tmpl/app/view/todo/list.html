@@ -1,6 +1,28 @@
+
 <div>
-    <h2>Hello Magix.js!</h2>
-    <input type="text" v-model="name">
-    <p>count: {{count}}</p>
-    <p>name: {{name}}</p>
+    <form class="form-inline" mx-submit="search()">
+        <div class="form-group">
+            <label>关键字:</label>
+            <input type="text" class="form-control" v-model="keyword">
+        </div>
+        <button class="btn btn-default" type="submit">搜索</button>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="todo in todos">
+                <td>{{todo.id}}</td>
+                <td>{{todo.name}}</td>
+                <td>
+                    <a href="javascript:;" class="mr10" mx-click="deleteItem({id: {{todo.id}}})">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
